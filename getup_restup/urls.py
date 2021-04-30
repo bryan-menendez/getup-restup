@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from quickstart import views as qs_views
+from snippets import views as sn_views
 
 router = routers.DefaultRouter()
 router.register(r'users', qs_views.UserViewSet)
 router.register(r'groups', qs_views.GroupViewSet)
+# router.register(r'snippets', sn_views.SnippetList)
 
 urlpatterns = [
     path('', include(router.urls)),
