@@ -19,13 +19,15 @@ from rest_framework import routers
 from quickstart import views as qs_views
 from snippets import views as sn_views
 
-router = routers.DefaultRouter()
-router.register(r'users', qs_views.UserViewSet)
-router.register(r'groups', qs_views.GroupViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'users', qs_views.UserViewSet)
+# router.register(r'groups', qs_views.GroupViewSet)
 # router.register(r'snippets', sn_views.SnippetList)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    # path('', include(router.urls)),
+    path('users/', qs_views.UserList.as_view()),
+    path('users/<int:pk>', qs_views.UserDetail.as_view()),
     path('snippets/', include('snippets.urls')),
     path('admin/', admin.site.urls),
 ]
