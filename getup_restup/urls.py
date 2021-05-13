@@ -25,9 +25,10 @@ from snippets import views as sn_views
 # router.register(r'snippets', sn_views.SnippetList)
 
 urlpatterns = [
-    # path('', include(router.urls)),
-    path('users/', qs_views.UserList.as_view()),
-    path('users/<int:pk>', qs_views.UserDetail.as_view()),
+    path('', qs_views.api_root),
     path('snippets/', include('snippets.urls')),
+    path('users/', qs_views.UserList.as_view(), name='user-list'),
+    path('users/<int:pk>', qs_views.UserDetail.as_view(), name='user-detail'),
+    path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
 ]

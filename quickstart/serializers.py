@@ -3,12 +3,12 @@ from rest_framework import serializers
 from snippets.models import Snippet
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+class UserSerializer(serializers.ModelSerializer):
+    snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippet-detail', read_only=True)
 
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups', 'snippets']
+        fields = ['url', 'id', 'username', 'email', 'groups', 'snippets']
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
